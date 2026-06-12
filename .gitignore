@@ -1,0 +1,57 @@
+*.DS_Store
+
+# LaTeX temporary/build files
+*.aux
+*.acn
+*.acr
+*.alg
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.hd
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.lpr
+*.nav
+*.out
+*.pdfsync
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# Latexmk and related caches
+*.latexmk
+_minted-*
+
+# Temporary/editor artifacts
+*.swp
+*.swo
+*~
+
+# FEM solver binaries (Windows, regeneratable)
+simulations/FEM_MOR_projects/femSolvers/*.exe
+simulations/FEM_MOR_projects/femSolvers/old/
+
+# FEM solver outputs (regeneratable)
+simulations/FEM_MOR_projects/*/lte_fileset/
+simulations/*.log
+simulations/FEM_MOR_projects/*/*.log
+simulations/FEM_MOR_projects/*/*.hfssresults/
+simulations/FEM_MOR_projects/*/debug_log.scr1
+simulations/FEKOsims/*/convertEPS2PDF.bat
+simulations/log.dat

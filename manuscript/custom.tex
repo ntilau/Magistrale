@@ -1,0 +1,154 @@
+\DeclareMathAlphabet{\mcal}{OMS}{cmbsy10}{b}{it}
+\DeclareMathAlphabet{\mcalsf}{OMS}{cmmib10}{m}{it}
+
+\newcommand{\quotes}[1]{``#1''}
+\newcommand{\itt}[1]{\textit{#1}}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+\newcommand{\itm}[1]{\mathit{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+\newcommand{\vect}[1]{\lowercase{ \mathbf{#1}}}
+\newcommand{\dyad}[1]{\overline{\overline{#1}}}
+\newcommand{\mbfit}[1]{\mathbold{#1}}
+\newcommand{\eqref}[1]{(\ref{#1})}
+\newcommand{\spanning}[1]{ \mathrm{span} \left \{ #1 \right \} }
+\newcommand{\colspan}[1]{ \mathrm{colsp} \left \{ #1 \right \} }
+\newcommand{\kernel}[1]{ \mathrm{ker} \left \{ #1 \right \} }
+\newcommand{\rank}[1]{ \mathrm{rank} \left ( #1 \right ) }
+\hyphenation{iso-tro-pic Max-well de-ri-va-to}
+
+\newtheorem{mydef}{Definition}
+\newtheorem{mythm}{Theorem}
+\newtheorem{mycc}{Conclusion}
+
+\definecolor{mycolor}{rgb}{.400,.400,.400}
+
+\usepackage{float} % used to fix figures references
+\usepackage[backref=page]{hyperref}%[colorlinks]
+\usepackage{memhfixc}
+\usepackage[figure,table]{hypcap}
+\hypersetup{
+	pdfstartview={FitV}, % { FitH, FitV, XYZ null null 1}
+	pdfpagelayout=OneColumn, % SinglePage OneColumn TwoColumnRight
+	pdfdirection=L2R,
+	pdfpagemode = {UseOutlines}, % UseNone, UseThumbs, UseOutlines, FullScreen, UseOC, UseAttachments
+	pdfpagetransition=Blinds,
+	linktocpage=true,
+	colorlinks=true,
+	linkcolor = mycolor,
+	urlcolor= black,
+	anchorcolor = mycolor,
+	citecolor = mycolor,
+	filecolor = mycolor,
+	pdftitle = {LN-Thesis},
+	pdfsubject = {Model Order Reduction in Finite Element Analysis of Phased Arrays},
+	pdfkeywords = {Model Order Reduction, Finite Element Method, Near to Far Fields Transformations, Phased Arrays},
+	pdfauthor = {Laurent Ntibarikure},
+	pdfproducer = {Laurent Ntibarikure},
+	pdfcenterwindow = true,
+	pdfdisplaydoctitle = true,
+	bookmarksopen=true,
+	bookmarksnumbered,
+	bookmarksopenlevel=-1, % \maxdimen
+	CJKbookmarks=true,
+	bookmarkstype=toc,
+	pdffitwindow=false,
+	nesting=false,
+	raiselinks=true,
+}
+
+\parskip 1ex
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{roman}
+\bibliographystyle{unsrtnat}
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\setcounter{section}{0}
+
+\makeatletter
+\newlength\dlf@normtxtw
+\setlength\dlf@normtxtw{\textwidth}
+\def\myhelvetfont{\def\sfdefault{mdput}}
+\newsavebox{\feline@chapter}
+\newcommand\feline@chapter@marker[1][4cm]{%
+\sbox\feline@chapter{%
+\resizebox{!}{#1}{\fboxsep=1pt%
+\colorbox{mycolor}{\color{white}\bfseries\rmfamily\thechapter}%
+}}%
+\rotatebox{90}{%
+\resizebox{%
+\heightof{\usebox{\feline@chapter}}+\depthof{\usebox{\feline@chapter}}}%
+{!}{\scshape\so\@chapapp}}
+\quad%
+\raisebox{\depthof{\usebox{\feline@chapter}}}{\usebox{\feline@chapter}}%
+}
+\newcommand\feline@chm[1][4cm]{%
+\sbox\feline@chapter{\feline@chapter@marker[#1]}%
+\makebox[0pt][l]{% aka \rlap
+\makebox[1cm][r]{\usebox\feline@chapter}%
+}}
+\makechapterstyle{mychapstyle}{
+\renewcommand\chapnamefont{\normalfont\Large\scshape\raggedright\so}
+\renewcommand\chaptitlefont{\normalfont\huge\bfseries\scshape\color{mycolor}}
+\renewcommand\chapternamenum{}
+\renewcommand\printchaptername{}
+\renewcommand\printchapternum{\null\hfill\feline@chm[2.5cm]\par}
+\renewcommand\afterchapternum{\par\vskip\midchapskip}
+\renewcommand\printchaptertitle[1]{\chaptitlefont\raggedright ##1\par}
+}
+\makeatother
+\chapterstyle{mychapstyle}
+
+\makeatletter
+\def\eqnarray{%
+  \let\Hy@reserved@a\relax
+  \def\@currentHref{}%
+  \H@eqnarray
+  \if@eqnstar
+  \else
+    \ifx\\\@currentHref\\%
+    \else
+      \@ifundefined{theHequation}{%
+        \make@stripped@name{\theequation}%
+        \let\theHequation\newname
+      }{}%
+      \hyper@makecurrent{equation}%
+      \Hy@raisedlink{\hyper@anchorstart{\@currentHref}{}\hyper@anchorend}
+    \fi
+  \fi
+}
+\makeatother
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{%
+\list{\@biblabel{\@arabic\c@enumiv}}%
+{\settowidth\labelwidth{\@biblabel{#1}}%
+\leftmargin\labelwidth
+\advance\leftmargin\labelsep
+\@openbib@code
+\usecounter{enumiv}%
+\let\p@enumiv\@empty
+\renewcommand\theenumiv{\@arabic\c@enumiv}}%
+\sloppy
+\clubpenalty4000
+\@clubpenalty \clubpenalty
+\widowpenalty4000%
+\sfcode`\.\@m}
+{\def\@noitemerr
+{\@latex@warning{Empty `thebibliography' environment}}%
+\endlist}
+\makeatother
+
+\makeatletter
+\define@key{Hyp}{raiselinks}[true]{%
+  \lowercase{\Hyp@boolkey{#1}}{raiselinks}}
+\makeatother
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside
+\ifodd\c@page
+\else\hbox{}\thispagestyle{empty}\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
